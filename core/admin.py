@@ -8,4 +8,4 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Job)
-admin.site.register(Application)
+admin.site.register(Application) 
