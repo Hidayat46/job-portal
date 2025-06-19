@@ -1,0 +1,15 @@
+<h2>All Available Jobs</h2>
+<ul>
+  {% for job in jobs %}
+    <li>
+      <strong>{{ job.title }}</strong> – {{ job.location }}<br>
+      {{ job.description|truncatewords:20 }}<br>
+      <em>Posted by {{ job.employer.username }} | {{ job.created_at|date:"M d, Y" }}</em>
+      <hr>
+    </li>
+  {% empty %}
+    <li>No jobs available.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'seeker_dashboard' %}">Back to Dashboard</a>

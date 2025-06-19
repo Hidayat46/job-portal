@@ -4,6 +4,11 @@ from django.contrib.auth import authenticate , login , logout
 from .forms import CustomUserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import Job
+from .forms import JobForm
+from django.contrib.auth.decorators import user_passes_test
+
+
 
 
 def home(request):
@@ -54,3 +59,21 @@ def seeker_dashboard(request):
 @login_required
 def employer_dashboard(request):
     return render(request, 'dashboard/employer.html')
+
+def is_employer(user):
+    return user.is_authenticated and user.role == 'employer'
+
+@user_passes_test(is_employer)
+def post_job(request):
+    if request .method == 'POST':
+        form = JobForm(request.POST)
+        if form.is_valid():
+            job = form.save(commit=False)
+            job.employer = request.user
+            job.save()
+            return redirect(request, 'jobs/post_job.html',{'form':form})
+        
+@login_required
+def job_list(request):
+    jobs = job.objects.all().order_by('-created_at')
+    return render(request , 'jobs/job_list.html',{'jobs':jobs})
