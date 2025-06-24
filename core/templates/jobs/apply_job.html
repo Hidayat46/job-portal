@@ -1,0 +1,15 @@
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  <div class="mb-3">
+    <label for="{{ form.resume.id_for_label }}" class="form-label">Resume</label>
+    {{ form.resume }}
+  </div>
+
+  <div class="mb-3">
+    <label for="{{ form.cover_letter.id_for_label }}" class="form-label">Cover Letter</label>
+    {{ form.cover_letter }}
+  </div>
+
+  <button type="submit" class="btn btn-success btn-lg">Submit Application</button>
+</form>

@@ -1,2 +1,6 @@
-<h2>Welcome, Employer {{ request.user.username }}</h2>
-<a href="{% url 'logout' %}">Logout</a>
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center bg-light p-4 rounded shadow-sm">
+    <h2 class="text-primary mb-0">Welcome, Employer {{ request.user.username }}</h2>
+    <a href="{% url 'logout' %}" class="btn btn-outline-danger">Logout</a>
+  </div>
+</div>
